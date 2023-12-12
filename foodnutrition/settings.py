@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-(+)t-k3p2+2t2u@*0boiw*dsef(v&#y75)b6*s=opagiczl_0!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1"]
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "whitenoise.runserver_nostatic",
     "corsheaders",
     "rest_framework",
     "food_analysis.apps.FoodAnalysisConfig",
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "foodnutrition.urls"
@@ -118,21 +120,25 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = (
-  '/static/',
-)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_HOST = "https://food-nutrition-d39c4911dcd2.herokuapp.com" if not DEBUG else ""
+STATIC_URL = STATIC_HOST + "/static/"
+
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-SWAGGER_SETTINGS = {
-   'USE_SESSION_AUTH': False
-}
+SWAGGER_SETTINGS = {"USE_SESSION_AUTH": False}
