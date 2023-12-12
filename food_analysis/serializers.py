@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:90fc9df1c88cdd0c85864131627fc0cf1ed7329f4c9065b3d858e7762b5cfeb4
-size 574
+from rest_framework import serializers
+
+from .models import FoodItem, FoodNutrient, FoodNutrientInItem
+
+
+class FoodItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodItem
+        fields = ("fdcId", "description")
+
+
+class FoodNutrientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodNutrient
+        fields = ("number", "name")
+
+
+class FoodNutrientInItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodNutrientInItem
+        fields = ("food_item", "food_nutrient", "amount", "unit_name")

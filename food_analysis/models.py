@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a83fd1b6ca7edad98fe600f3c15e1f6406cdc4d48ed2a8c4029e91a096a8f030
-size 643
+from django.db import models
+
+
+class FoodItem(models.Model):
+    fdcId = models.IntegerField(primary_key=True)
+    description = models.CharField(max_length=1000)
+
+
+class FoodNutrient(models.Model):
+    number = models.CharField(primary_key=True, max_length=20)
+    name = models.CharField(max_length=200)
+
+
+class FoodNutrientInItem(models.Model):
+    key = models.CharField(primary_key=True, max_length=20)
+    food_item = models.ForeignKey(to=FoodItem, on_delete=models.CASCADE)
+    food_nutrient = models.ForeignKey(to=FoodNutrient, on_delete=models.CASCADE)
+    amount = models.FloatField()
+    unit_name = models.CharField(max_length=10)

@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b0aab068a882ac6ca1ed94b770ca6f15186affdbd5c5ac531ae6dfbec2a385ab
-size 403
+"""
+WSGI config for foodnutrition project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "foodnutrition.settings")
+
+application = get_wsgi_application()
