@@ -17,6 +17,7 @@ docopt==0.6.2
 drf-yasg==1.21.7
 Flask==3.0.0
 Flask-SQLAlchemy==3.1.1
+gunicorn==21.2.0
 idna==3.4
 inflection==0.5.1
 itsdangerous==2.1.2
