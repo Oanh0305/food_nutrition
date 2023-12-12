@@ -44,4 +44,5 @@ uritemplate==4.1.1
 urllib3==1.26.18
 Werkzeug==3.0.1
 wheel==0.37.1
+whitenoise==6.6.0
 yarg==0.1.9
