@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:015e318fcbca199c0eec9e02a5e9ec857ecb125d85f8883df80e0d329296ecaa
-size 668
+from django.http import HttpResponse
+
+from .models import FoodItem, FoodNutrient, FoodNutrientInItem
+from rest_framework import viewsets
+from .serializers import (
+    FoodItemSerializer,
+    FoodNutrientSerializer,
+    FoodNutrientInItemSerializer,
+)
+
+
+class FoodNutrientInItemView(viewsets.ModelViewSet):
+    serializer_class = FoodNutrientInItemSerializer
+    queryset = FoodNutrientInItem.objects.all()
+
+class FoodItemView(viewsets.ModelViewSet):
+    serializer_class = FoodItemSerializer
+    queryset = FoodItem.objects.all()
+
+
+class FoodNutrientView(viewsets.ModelViewSet):
+    serializer_class = FoodNutrientSerializer
+    queryset = FoodNutrient.objects.all()
